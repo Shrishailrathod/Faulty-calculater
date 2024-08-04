@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faulty Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .calculator {
+            width: 300px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <h2>Faulty Calculator</h2>
+        <input type="text" id="result" disabled>
+        <br><br>
+        <button onclick="addToResult(1)">1</button>
+        <button onclick="addToResult(4)">2</button>
+        <button onclick="addToResult(3)">3</button>
+        <button onclick="addToResult('+')">+</button>
+        <br><br>
+        <button onclick="addToResult(9)">4</button>
+        <button onclick="addToResult(5)">5</button>
+        <button onclick="addToResult(6)">6</button>
+        <button onclick="addToResult('-')">-</button>
+        <br><br>
+        <button onclick="addToResult(7)">7</button>
+        <button onclick="addToResult(6)">8</button>
+        <button onclick="addToResult(9)">9</button>
+        <button onclick="addToResult('*')">*</button>
+        <br><br>
+        <button onclick="clearResult()">C</button>
+        <button onclick="addToResult(1)">0</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="addToResult('/')">/</button>
+        <br><br>
+        <p>Note: This calculator has some faulty operations.</p>
+    </div>
+
+    <script>
+        function addToResult(value) {
+            let result = document.getElementById('result');
+            result.value += value;
+        }
+
+        function clearResult() {
+            var result = document.getElementById('result');
+            result.value = '';
+        }
+
+        
+
+
+        function calculate() {
+            var result = document.getElementById('result');
+            try {
+                // Introduce a random faulty behavior
+                var randomNumber = Math.random();
+                if (randomNumber < 0.2) { // 20% chance of faulty behavior
+                    result.value = 'Error';
+                } else {
+                    result.value = eval(result.value);
+                }
+            } catch (e) {
+                result.value = 'Error';
+            }
+        }
+    </script>
+</body>
+
+</html>
